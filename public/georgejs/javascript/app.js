@@ -71,7 +71,7 @@ function renderComponent(data){
         }
         element.innerHTML = `${contentItem}`;
         gComponents.appendChild(element);
-    }
+    };
 }
 
 function logThis(data){
