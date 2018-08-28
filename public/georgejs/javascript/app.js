@@ -14,6 +14,15 @@ const state = {
     pageNumber: 1
 }
 
+function goToPage(page){
+    const url = "./georgejs/routes/routes.json";
+    state.routeName = page;
+    fetch(url)
+        .then(res => res.json())
+        .then(findCurrentRoute)
+        .then(fetchComponent)
+}
+
 function getEndOfUrl(data){
     let url = window.location.href;
     for(let i = 0; i < url.length; i++){
@@ -26,19 +35,20 @@ function getEndOfUrl(data){
 
 function findCurrentRoute(data){
     let routes = data.routes;
-    if (!state.routeName){
-        history.pushState(state.routeName, "page 1", "home");
-        return(((state.routeName = "home") && (state.component = "Home")));
+    let stateRoute = state.routeName;
+    if (!stateRoute){
+        history.pushState(stateRoute, "page 1", "home");
+        return(((stateRoute = "home") && (state.component = "Home")));
     } else {
         state.pageNumber += 1;
         for(let i = 0; i < routes.length; i++){
-            if (window.location.href.includes(routes[i].name)){
-                history.pushState(state.routeName, `page ${state.pageNumber}`, `${routes[i].name}`);
-                return((state.routeName = routes[i].name) && (state.component = routes[i].component));
+            if (stateRoute == (routes[i].name)){
+                history.pushState(stateRoute, `page ${state.pageNumber}`, `${routes[i].name}`);
+                return((stateRoute = routes[i].name) && (state.component = routes[i].component));
             }
         };
-        history.pushState(state.routeName, `page ${state.pageNumber}`, `${routes[0].name}`);
-        return((state.routeName = routes[0].name) && (state.component = routes[0].component));
+        history.pushState(stateRoute, `page ${state.pageNumber}`, `${routes[0].name}`);
+        return((stateRoute = routes[0].name) && (state.component = routes[0].component));
     }
 }
 
@@ -61,6 +71,7 @@ function renderComponent(data){
             classItem = jsonData[i].class,
             idItem = jsonData[i].id,
             contentItem = jsonData[i].content;
+            scriptItem = jsonData[i].script;
         const element = document.createElement(`${elementItem}`);
 
         if (idItem){
@@ -71,7 +82,7 @@ function renderComponent(data){
         }
         element.innerHTML = `${contentItem}`;
         gComponents.appendChild(element);
-    }
+    };
 }
 
 function logThis(data){

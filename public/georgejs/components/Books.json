@@ -2,12 +2,12 @@
     "component": [
         {
             "element": "div",
-            "content": "<h1>hi im paul</h1> <p>can i do both</p>"
+            "content": "<h1 onclick=\"goToPage('home')\">have a look</h1> <p>its in a book</p>"
         },
         {
             "element": "p",
             "id": "bigparagraph",
-            "content": "hi paul im paragraph"
+            "content": "reading rainbows"
         }
     ]
 }
