@@ -4,39 +4,33 @@
         .then(res => res.json())
         .then(routePage)
 })()
-
 const state = {
-    routeName: "",
-    component: "",
-    pageData: [
-    ],
-    formData: { 
-        
-    }
+    routeName: window.location.href.substring(22),
+    component: "Home",
+    formData: {}
 }
 
 function routePage(data){
     let routes = data.routes;
     findCurrentRoute(routes);
     fetchComponent();
-    renderPage();
-    console.log(state.pageData)
 }
 
 function findCurrentRoute(data){
     let routes = data;
-    for(let i = 0; i < routes.length; i++){
-        if (window.location.href.includes(routes[i].name)){
-            return((state.routeName = routes[i].name) && (state.component = routes[i].component));
-        }
-    };
-    return((state.routeName = routes[0].name) && (state.component = routes[0].component));
-}
-
-function renderPage(){
-    document.title = state.routeName;
-    gComponent = document.getElementById("gComponents");
-    gComponent.innerhtml = "";
+    if (!state.routeName){
+        history.pushState(state.routeName, "page 1", "home")
+        return(((state.routeName = "home") && (state.component = "Home")))
+    } else {
+        for(let i = 0; i < routes.length; i++){
+            if (window.location.href.includes(routes[i].name)){
+                history.pushState(state.routeName, "page 2", `${routes[i].name}`)
+                return((state.routeName = routes[i].name) && (state.component = routes[i].component));
+            }
+        };
+        history.pushState(state.routeName, "page 2", `${routes[0].name}`)
+        return((state.routeName = routes[0].name) && (state.component = routes[0].component));
+    }
 }
 
 function fetchComponent(){
@@ -44,19 +38,21 @@ function fetchComponent(){
     return fetch(url + state.component + ".json")
         .then(res => res.json())
         .then(res => res)
-        .then(jsonToHtml)
+        .then(renderComponent)
 }
 
-function jsonToHtml(data){
+function renderComponent(data){
     const gComponents = document.querySelector("#gComponents");
     let jsonData = data.component
+
     for(let i = 0; i < jsonData.length; i++){
         const elementItem = jsonData[i].element,
             classItem = jsonData[i].class,
             idItem = jsonData[i].id,
             contentItem = jsonData[i].content;
         const element = document.createElement(`${elementItem}`)
-        if (idItem !== ""){ 
+
+        if (idItem !== ""){
             element.id = idItem;
         }
         if (classItem !== ""){
