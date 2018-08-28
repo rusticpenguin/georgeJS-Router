@@ -1,0 +1,10 @@
+{
+    "component": [
+        {
+            "element": "div",
+            "id": "home",
+            "class": "",
+            "content": "<div class=\"sectionSelect\"><div><img src=\"\" alt=\"author image\" \/><h3>Authors<\/h3><\/div><\/div><div class=\"sectionSelect\"><div><img src=\"\" alt=\"book image\"\/><h3>Books<\/h3><\/div><\/div>"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "component": [
+        {
+            "element": "div",
+            "id": "",
+            "class": "",
+            "content": "<h1>hi im paul</h1> <p>can i do both</p>"
+        },
+        {
+            "element": "p",
+            "id": "bigparagraph",
+            "class": "",
+            "content": "hi paul im paragraph"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "routes": [
+        {
+            "name": "error",
+            "url": "/*",
+            "component": "Error"
+        },
+        {
+            "name": "home",
+            "url": "/",
+            "component": "Home"
+        },
+        {
+            "name": "about",
+            "url": "/about/",
+            "component": "About"
+        }
+    ]
+}
