@@ -2,22 +2,18 @@
     const url = "./georgejs/routes/routes.json"
     fetch(url)
         .then(res => res.json())
-        .then(routePage)
+        .then(findCurrentRoute)
+        .then(fetchComponent)
 })()
+
 const state = {
     routeName: window.location.href.substring(22),
     component: "Home",
     formData: {}
 }
 
-function routePage(data){
-    let routes = data.routes;
-    findCurrentRoute(routes);
-    fetchComponent();
-}
-
 function findCurrentRoute(data){
-    let routes = data;
+    let routes = data.routes;
     if (!state.routeName){
         history.pushState(state.routeName, "page 1", "home")
         return(((state.routeName = "home") && (state.component = "Home")))
