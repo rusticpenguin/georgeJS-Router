@@ -3,7 +3,8 @@
         {
             "element": "div",
             "id": "home",
-            "content": "<div class=\"sectionSelect\"><div><img src=\"\" alt=\"author image\" \/><h3>Authors<\/h3><\/div><\/div><div class=\"sectionSelect\"><div><img src=\"\" alt=\"book image\"\/><h3>Books<\/h3><\/div><\/div>"
+            "content": "<div class=\"sectionSelect\" onclick=\"goToPage('authors')\"><div><img src=\"./img/authors.png\" alt=\"author image\" \/><h3>Authors<\/h3><\/div><\/div><div class=\"sectionSelect\" onclick=\"goToPage('books')\"><div><img src=\"./img/books.jpg\" alt=\"book image\"\/><h3>Books<\/h3><\/div><\/div>",
+            "css": "../../main.css"
         }
     ]
 }

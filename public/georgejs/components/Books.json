@@ -1,0 +1,13 @@
+{
+    "component": [
+        {
+            "element": "div",
+            "content": "<h1 onclick=\"goToPage('home')\">have a look</h1> <p>its in a book</p>"
+        },
+        {
+            "element": "p",
+            "id": "bigparagraph",
+            "content": "reading rainbows"
+        }
+    ]
+}

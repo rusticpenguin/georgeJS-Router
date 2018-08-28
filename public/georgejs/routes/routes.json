@@ -11,9 +11,14 @@
             "component": "Home"
         },
         {
-            "name": "about",
-            "url": "/about",
-            "component": "About"
+            "name": "books",
+            "url": "/books",
+            "component": "Books"
+        },
+        {
+            "name": "authors",
+            "url": "/authors",
+            "component": "Authors"
         }
     ]
 }

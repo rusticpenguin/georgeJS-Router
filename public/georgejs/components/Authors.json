@@ -1,0 +1,8 @@
+{
+    "component": [
+        {
+            "element": "div",
+            "content": "<h1 onclick=\"goToPage('home')\">hi im an author</h1> <p>can i write mroe books</p>"
+        }
+    ]
+}
