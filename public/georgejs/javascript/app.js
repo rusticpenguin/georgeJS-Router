@@ -9,7 +9,8 @@
 const state = {
     routeName: window.location.href.substring(22),
     component: "Home",
-    formData: {}
+    formData: {},
+    pageNumber: 1
 }
 
 function findCurrentRoute(data){
@@ -18,18 +19,20 @@ function findCurrentRoute(data){
         history.pushState(state.routeName, "page 1", "home")
         return(((state.routeName = "home") && (state.component = "Home")))
     } else {
+        state.pageNumber += 1;
         for(let i = 0; i < routes.length; i++){
             if (window.location.href.includes(routes[i].name)){
-                history.pushState(state.routeName, "page 2", `${routes[i].name}`)
+                history.pushState(state.routeName, `page ${state.pageNumber}`, `${routes[i].name}`)
                 return((state.routeName = routes[i].name) && (state.component = routes[i].component));
             }
         };
-        history.pushState(state.routeName, "page 2", `${routes[0].name}`)
+        history.pushState(state.routeName, `page ${state.pageNumber}`, `${routes[0].name}`)
         return((state.routeName = routes[0].name) && (state.component = routes[0].component));
     }
 }
 
 function fetchComponent(){
+    document.title = `gReads | ${state.component}`;
     const url = "./georgejs/components/";
     return fetch(url + state.component + ".json")
         .then(res => res.json())
