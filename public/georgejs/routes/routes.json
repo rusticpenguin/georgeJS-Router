@@ -12,7 +12,7 @@
         },
         {
             "name": "about",
-            "url": "/about/",
+            "url": "/about",
             "component": "About"
         }
     ]
