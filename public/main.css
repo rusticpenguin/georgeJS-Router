@@ -5,7 +5,8 @@
     border: 2px solid #343a40;
     border-radius: 2%;
     flex-flow: column wrap;
-    text-align: center
+    text-align: center;
+    cursor: pointer
 }
 
 .sectionSelect:nth-child(1) {
