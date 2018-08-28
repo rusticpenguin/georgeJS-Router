@@ -7,7 +7,7 @@
 })()
 
 const state = {
-    routeName: window.location.href.substring(22),
+    routeName: window.location.href.substring(39),
     component: "Home",
     formData: {},
     pageNumber: 1
@@ -51,10 +51,10 @@ function renderComponent(data){
             contentItem = jsonData[i].content;
         const element = document.createElement(`${elementItem}`)
 
-        if (idItem !== ""){
+        if (idItem){
             element.id = idItem;
         }
-        if (classItem !== ""){
+        if (classItem){
             element.classList.add(`${classItem}`)
         }
         element.innerHTML = `${contentItem}`
