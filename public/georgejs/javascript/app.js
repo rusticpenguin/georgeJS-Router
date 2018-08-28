@@ -2,15 +2,26 @@
     const url = "./georgejs/routes/routes.json"
     fetch(url)
         .then(res => res.json())
+        .then(getEndOfUrl)
         .then(findCurrentRoute)
         .then(fetchComponent)
 })()
 
 const state = {
-    routeName: window.location.href.substring(39),
+    routeName: "",
     component: "Home",
     formData: {},
     pageNumber: 1
+}
+
+function getEndOfUrl(data){
+    let url = window.location.href;
+    for(let i = 0; i < url.length; i++){
+        if (url[i] === "/"){
+            state.routeName = url.substring(i + 1);
+        }
+    }
+    return data
 }
 
 function findCurrentRoute(data){
