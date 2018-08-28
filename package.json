@@ -1,0 +1,23 @@
+{
+  "name": "galvanize-read-frontend",
+  "version": "1.0.0",
+  "description": "![Galvanize Read Logo](#) By George Chios ___ # Galvanize Read  A website designed for students to find books ___ ## Live Demos Front end deployed **[here]()** Back end deployed **[here](#)** ## Technologies used:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rusticpenguin/galvanize-read-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rusticpenguin/galvanize-read-frontend/issues"
+  },
+  "homepage": "https://github.com/rusticpenguin/galvanize-read-frontend#readme",
+  "dependencies": {
+    "requirejs": "^2.3.6"
+  }
+}
