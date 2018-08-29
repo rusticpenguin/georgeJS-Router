@@ -2,12 +2,18 @@
     "component": [
         {
             "element": "div",
-            "content": "<h1 onclick=\"goToPage('home')\">have a look</h1> <p>its in a book</p>"
+            "class": "navContent",
+            "content": "<div class=\"navBlock\" onclick=\"goToPage('authors')\"><img class=\"thumbnail\" src=\"./img/authors.png\" alt=\"authors\"><span>Authors<\/span><\/div><div class=\"navBlock selected\" onclick=\"goToPage('books')\"><img class=\"thumbnail\" src=\"./img/books.jpg\" alt=\"books\"><span>Books<\/span><\/div>"
         },
         {
             "element": "p",
-            "id": "bigparagraph",
-            "content": "reading rainbows"
+            "class": "centerText",
+            "content": "This page is dynamically displayed. Your website should not reload on page swaps"
+        },
+        {
+        "element": "div",
+        "class": "centerText",
+        "content": "<button class=\"btn btn-primary\" onclick=\"goToPage('home')\"> Go Home <\/button>"
         }
     ]
 }
