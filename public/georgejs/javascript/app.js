@@ -15,6 +15,7 @@ const state = {
 }
 
 function goToPage(page){
+    console.log(page);
     const url = "./georgejs/routes/routes.json";
     state.routeName = page;
     fetch(url)
