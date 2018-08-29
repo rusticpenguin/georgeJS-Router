@@ -99,11 +99,6 @@ if (onpopstate){
     initialFetch();
 }
 
-let lastRerender = ""
-
 window.onpopstate = function(){
-    if (lastRerender !== history.state){
         initialFetch()
-    }
-    lastRerender = history.state;
 }
