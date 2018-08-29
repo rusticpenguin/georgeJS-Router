@@ -1,10 +1,5 @@
 (function initializePage(){
-    const url = "./georgejs/routes/routes.json";
-    fetch(url)
-        .then(res => res.json())
-        .then(getEndOfUrl)
-        .then(findCurrentRoute)
-        .then(fetchComponent)
+    initialFetch();
 })()
 
 const state = {
@@ -14,8 +9,16 @@ const state = {
     pageNumber: 1
 }
 
+function initialFetch(){
+    const url = "./georgejs/routes/routes.json";
+    fetch(url)
+        .then(res => res.json())
+        .then(getEndOfUrl)
+        .then(findCurrentRoute)
+        .then(fetchComponent)
+}
+
 function goToPage(page){
-    console.log(page);
     const url = "./georgejs/routes/routes.json";
     state.routeName = page;
     fetch(url)
@@ -89,4 +92,18 @@ function renderComponent(data){
 function logThis(data){
     console.log(data);
     return data;
+}
+
+if (onpopstate){
+    console.log("hi");
+    initialFetch();
+}
+
+let lastRerender = ""
+
+window.onpopstate = function(){
+    if (lastRerender !== history.state){
+        initialFetch()
+    }
+    lastRerender = history.state;
 }
