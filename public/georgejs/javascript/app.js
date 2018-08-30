@@ -89,16 +89,6 @@ function renderComponent(data){
     };
 }
 
-function logThis(data){
-    console.log(data);
-    return data;
-}
-
-if (onpopstate){
-    console.log("hi");
-    initialFetch();
-}
-
 window.onpopstate = function(){
-        initialFetch()
+    initialFetch()
 }
