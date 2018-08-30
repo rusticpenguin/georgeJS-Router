@@ -15,15 +15,7 @@ function initialFetch(){
         .then(res => res.json())
         .then(getEndOfUrl)
         .then(findCurrentRoute)
-        .then(fetchComponent)
-}
-
-function goToPage(page){
-    const url = "./georgejs/routes/routes.json";
-    state.routeName = page;
-    fetch(url)
-        .then(res => res.json())
-        .then(findCurrentRoute)
+        .then(fetchHeaderFooter)
         .then(fetchComponent)
 }
 
@@ -56,19 +48,29 @@ function findCurrentRoute(data){
     }
 }
 
+function fetchHeaderFooter(){
+    const header = document.querySelector("#gHeader");
+    const headerUrl = "../components/Header.json"
+    if (header){
+        fetch(headerUrl)
+            .then(res => res.json)
+            .then(res => renderComponent(res, "gHeader"))
+    }
+}
+
 function fetchComponent(){
     document.title = `gReads | ${state.component}`;
     const url = "./georgejs/components/";
     return fetch(url + state.component + ".json")
         .then(res => res.json())
         .then(res => res)
-        .then(renderComponent)
+        .then(res => renderComponent(res, "gComponents"))
 }
 
-function renderComponent(data){
-    const gComponents = document.querySelector("#gComponents");
+function renderComponent(data, targetComponent){
+    const component = document.querySelector(`#${targetComponent}`);
     let jsonData = data.component;
-    gComponents.innerHTML = "";
+    component.innerHTML = "";
 
     for(let i = 0; i < jsonData.length; i++){
         const elementItem = jsonData[i].element,
@@ -85,8 +87,18 @@ function renderComponent(data){
             element.classList.add(`${classItem}`);
         }
         element.innerHTML = `${contentItem}`;
-        gComponents.appendChild(element);
+        component.appendChild(element);
+
     };
+}
+
+function goToPage(page){
+    const url = "./georgejs/routes/routes.json";
+    state.routeName = page;
+    fetch(url)
+        .then(res => res.json())
+        .then(findCurrentRoute)
+        .then(fetchComponent)
 }
 
 window.onpopstate = function(){
