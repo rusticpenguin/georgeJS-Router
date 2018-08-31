@@ -50,12 +50,18 @@ function findCurrentRoute(data){
 
 function fetchHeaderFooter(){
     const header = document.querySelector("#gHeader");
+    const footer = document.querySelector("#gFooter")
     const url = "/georgejs/components/"
     if (header){
         fetch(url + "Header.json")
             .then(res => res.json())
             .then(logThis())
             .then(res => renderComponent(res, "gHeader"))
+    }
+    if (footer){
+        fetch(url + "Footer.json")
+            .then(res => res.json())
+            .then(res => renderComponent(res, "gFooter"))
     }
 }
 
