@@ -50,10 +50,11 @@ function findCurrentRoute(data){
 
 function fetchHeaderFooter(){
     const header = document.querySelector("#gHeader");
-    const headerUrl = "../components/Header.json"
+    const url = "/georgejs/components/"
     if (header){
-        fetch(headerUrl)
-            .then(res => res.json)
+        fetch(url + "Header.json")
+            .then(res => res.json())
+            .then(logThis())
             .then(res => renderComponent(res, "gHeader"))
     }
 }
@@ -63,7 +64,6 @@ function fetchComponent(){
     const url = "./georgejs/components/";
     return fetch(url + state.component + ".json")
         .then(res => res.json())
-        .then(res => res)
         .then(res => renderComponent(res, "gComponents"))
 }
 
@@ -84,7 +84,9 @@ function renderComponent(data, targetComponent){
             element.id = idItem;
         }
         if (classItem){
-            element.classList.add(`${classItem}`);
+            for(let j = 0; j < classItem.length; j++){
+                element.classList.add(`${classItem[j]}`);
+            }
         }
         element.innerHTML = `${contentItem}`;
         component.appendChild(element);
@@ -103,4 +105,9 @@ function goToPage(page){
 
 window.onpopstate = function(){
     initialFetch()
+}
+
+function logThis(data){
+    console.log(data);
+    return data;
 }
