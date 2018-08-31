@@ -2,17 +2,17 @@
     "component": [
         {
             "element": "div",
-            "class": ["navContent"],
+            "class": "navContent",
             "content": "<div class=\"navBlock selected\" onclick=\"goToPage('authors')\"><img class=\"thumbnail\" src=\"./img/authors.png\" alt=\"authors\"><span>Authors<\/span><\/div><div class=\"navBlock\" onclick=\"goToPage('books')\"><img class=\"thumbnail\" src=\"./img/books.jpg\" alt=\"books\"><span>Books<\/span><\/div>"
         },
         {
             "element": "div",
-            "class": ["centerText"],
+            "class": "centerText",
             "content": "<h1 onclick=\"goToPage('home')\">hi im an author</h1> <p>can i write mroe books</p>"
         },
         {
             "element": "div",
-            "class": ["centerText"],
+            "class": "centerText",
             "content": "<button class=\"btn btn-primary\" onclick=\"goToPage('home')\"> Go Home <\/button>"
         }
     ]
