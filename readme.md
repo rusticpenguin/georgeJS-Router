@@ -12,10 +12,10 @@ ___
 *  "/" or "Home" take you to the home page
 *  Renders componentized Header / Footer
 
-## Live Demos
+## Live Demos:
 Front end deployed **[here](https://gread-frontend.firebaseapp.com/home)**
 
-## Known Issues
+## Known Issues:
 *  Can only revert to previous page once
 
 ## Helpful Links:
