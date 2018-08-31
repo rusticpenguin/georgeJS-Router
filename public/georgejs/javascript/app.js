@@ -33,19 +33,23 @@ function findCurrentRoute(data){
     let routes = data.routes;
     let stateRoute = state.routeName;
     if (!stateRoute){
-        history.pushState(stateRoute, "page 1", "home");
+        historyPushState(stateRoute, "page 1", "home");
         return(((stateRoute = "home") && (state.component = "Home")));
     } else {
         state.pageNumber += 1;
         for(let i = 0; i < routes.length; i++){
             if (stateRoute == (routes[i].name)){
-                history.pushState(stateRoute, `page ${state.pageNumber}`, `${routes[i].name}`);
+                historyPushState(stateRoute, state.pageNumber, routes[i].name)
                 return((stateRoute = routes[i].name) && (state.component = routes[i].component));
             }
         };
-        history.pushState(stateRoute, `page ${state.pageNumber}`, `${routes[0].name}`);
+        historyPushState(stateRoute, state.pageNumber, routes[0].name)
         return((stateRoute = routes[0].name) && (state.component = routes[0].component));
     }
+}
+
+function historyPushState(stateObj, page, route){
+    history.pushState(stateObj, `page ${page}`, route);
 }
 
 function fetchHeaderFooter(){
@@ -55,7 +59,6 @@ function fetchHeaderFooter(){
     if (header){
         fetch(url + "Header.json")
             .then(res => res.json())
-            .then(logThis())
             .then(res => renderComponent(res, "gHeader"))
     }
     if (footer){
@@ -111,9 +114,4 @@ function goToPage(page){
 
 window.onpopstate = function(){
     initialFetch()
-}
-
-function logThis(data){
-    console.log(data);
-    return data;
 }
