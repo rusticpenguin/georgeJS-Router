@@ -15,15 +15,7 @@ function initialFetch(){
         .then(res => res.json())
         .then(getEndOfUrl)
         .then(findCurrentRoute)
-        .then(fetchComponent)
-}
-
-function goToPage(page){
-    const url = "./georgejs/routes/routes.json";
-    state.routeName = page;
-    fetch(url)
-        .then(res => res.json())
-        .then(findCurrentRoute)
+        .then(fetchHeaderFooter)
         .then(fetchComponent)
 }
 
@@ -56,19 +48,35 @@ function findCurrentRoute(data){
     }
 }
 
+function fetchHeaderFooter(){
+    const header = document.querySelector("#gHeader");
+    const footer = document.querySelector("#gFooter")
+    const url = "/georgejs/components/"
+    if (header){
+        fetch(url + "Header.json")
+            .then(res => res.json())
+            .then(logThis())
+            .then(res => renderComponent(res, "gHeader"))
+    }
+    if (footer){
+        fetch(url + "Footer.json")
+            .then(res => res.json())
+            .then(res => renderComponent(res, "gFooter"))
+    }
+}
+
 function fetchComponent(){
     document.title = `gReads | ${state.component}`;
     const url = "./georgejs/components/";
     return fetch(url + state.component + ".json")
         .then(res => res.json())
-        .then(res => res)
-        .then(renderComponent)
+        .then(res => renderComponent(res, "gComponents"))
 }
 
-function renderComponent(data){
-    const gComponents = document.querySelector("#gComponents");
+function renderComponent(data, targetComponent){
+    const component = document.querySelector(`#${targetComponent}`);
     let jsonData = data.component;
-    gComponents.innerHTML = "";
+    component.innerHTML = "";
 
     for(let i = 0; i < jsonData.length; i++){
         const elementItem = jsonData[i].element,
@@ -82,23 +90,30 @@ function renderComponent(data){
             element.id = idItem;
         }
         if (classItem){
-            element.classList.add(`${classItem}`);
+            for(let j = 0; j < classItem.length; j++){
+                element.classList.add(`${classItem[j]}`);
+            }
         }
         element.innerHTML = `${contentItem}`;
-        gComponents.appendChild(element);
+        component.appendChild(element);
+
     };
+}
+
+function goToPage(page){
+    const url = "./georgejs/routes/routes.json";
+    state.routeName = page;
+    fetch(url)
+        .then(res => res.json())
+        .then(findCurrentRoute)
+        .then(fetchComponent)
+}
+
+window.onpopstate = function(){
+    initialFetch()
 }
 
 function logThis(data){
     console.log(data);
     return data;
-}
-
-if (onpopstate){
-    console.log("hi");
-    initialFetch();
-}
-
-window.onpopstate = function(){
-        initialFetch()
 }
